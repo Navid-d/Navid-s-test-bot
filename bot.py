@@ -179,37 +179,37 @@ def send_season_one(message):
         if len(m) > 1:
             if m[1] == '1':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 4)
+                bot.forward_message(message.chat.id, -1001410450666, 2)
             elif m[1] == '2':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 7)
+                bot.forward_message(message.chat.id, -1001410450666, 3)
             elif m[1] == '3':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 9)
+                bot.forward_message(message.chat.id, -1001410450666, 4)
             elif m[1] == '4':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 11)
+                bot.forward_message(message.chat.id, -1001410450666, 5)
             elif m[1] == '5':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 14)
+                bot.forward_message(message.chat.id, -1001410450666, 6)
             elif m[1] == '6':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 16)
+                bot.forward_message(message.chat.id, -1001410450666, 7)
             elif m[1] == '7':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 19)
+                bot.forward_message(message.chat.id, -1001410450666, 8)
             elif m[1] == '8':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 21)
+                bot.forward_message(message.chat.id, -1001410450666, 9)
             elif m[1] == '9':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 33)
+                bot.forward_message(message.chat.id, -1001410450666, 10)
             elif m[1] == '10':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 37)
+                bot.forward_message(message.chat.id, -1001410450666, 11)
             elif m[1] == '11':
                 bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001308027908, 39)
+                bot.forward_message(message.chat.id, -1001410450666, 12)
             else:
                 print("Error")
     except:
