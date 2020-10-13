@@ -216,6 +216,9 @@ def send_season_one(message):
             elif m[1] == '13':
                 bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 14)
+            elif m[1] == '14':
+                bot.send_message(message.chat.id, m[1])
+                bot.forward_message(message.chat.id, -1001410450666, 15)
             else:
                 print("Error")
     except:
