@@ -250,7 +250,8 @@ def zeyghami_pnb(message):
 
 @bot.message_handler(content_types=["sticker"])
 def ban(message):
-    print(message)
+    if message.sticker.set_name == "khas0111":
+        bot.delete_message(message.chat.id, message.message_id)
 
 try:
     bot.polling(none_stop=True)
