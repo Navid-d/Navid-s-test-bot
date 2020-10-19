@@ -248,6 +248,10 @@ def zeyghami_pnb(message):
     else:
         bot.reply_to(message.reply_to_message, "پس نمه بابا!")
 
+@bot.message_handler(content_types=["sticker"])
+def ban(message):
+    print(message)
+
 try:
     bot.polling(none_stop=True)
 except:
