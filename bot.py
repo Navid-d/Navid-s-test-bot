@@ -250,7 +250,7 @@ def zeyghami_pnb(message):
 
 @bot.message_handler(content_types=["sticker"])
 def ban(message):
-    if message.sticker.set_name == "khas0111":
+    if (message.sticker.set_name == "khas0111") or (message.sticker.set_name == "Emamkhomeyni_rah"):
         bot.delete_message(message.chat.id, message.message_id)
 
 try:
