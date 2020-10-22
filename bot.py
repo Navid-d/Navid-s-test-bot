@@ -219,12 +219,6 @@ def send_season_one(message):
             elif m[1] == '14':
                 bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 15)
-            elif m[1] == '15':
-                bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001410450666, 16)
-            elif m[1] == '16':
-                bot.send_message(message.chat.id, m[1])
-                bot.forward_message(message.chat.id, -1001410450666, 17)
             else:
                 print("Error")
     except:
@@ -253,6 +247,10 @@ def zeyghami_pnb(message):
         bot.send_message(message.chat.id, "پس نمه بابا!")
     else:
         bot.reply_to(message.reply_to_message, "پس نمه بابا!")
+
+@bot.message_handler(commands=["kill", "vote"])
+def kill(message):
+    bot.send_message(message.chat.id, f"{message.text.split( )[1]} {choice([1, 2])} an impostor")
 
 @bot.message_handler(content_types=["sticker"])
 def ban(message):
