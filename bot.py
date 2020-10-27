@@ -31,6 +31,84 @@ def rps(player1, player2):
 
 bot = telebot.TeleBot("1245162998:AAHYtCvVRrszidXcERn-4o8tySA55CSUm_I", parse_mode=None)
 
+letter = {
+    "ا": "h",
+    "ب": "f",
+    "پ": "\\",
+    "ت": "j",
+    "ث": "e",
+    "ج": "[",
+    "چ": "]",
+    "ح": "p",
+    "خ": "o",
+    "د": "n",
+    "ذ": "b",
+    "ر": "v",
+    "ز": "c",
+    "ژ": "C",
+    "س": "s",
+    "ش": "a",
+    "ص": "w",
+    "ض": "q",
+    "ط": "x",
+    "ظ": "z",
+    "ع": "u",
+    "غ": "y",
+    "ف": "t",
+    "ق": "r",
+    "ک": ";",
+    "گ": "'",
+    "ل": "g",
+    "م": "l",
+    "ن": "k",
+    "و": ",",
+    "ه": "i",
+    "ی": "d",
+    "h": "ا",
+    "f": "ب",
+    "\\": "پ",
+    "j": "ت",
+    "e": "ث",
+    "[": "ج",
+    "]": "چ",
+    "p": "ح",
+    "o": "خ",
+    "n": "د",
+    "b": "ذ",
+    "v": "ر",
+    "c": "ز",
+    "C": "ژ",
+    "s": "س",
+    "a": "ش",
+    "w": "ص",
+    "q": "ض",
+    "x": "ط",
+    "z": "ظ",
+    "u": "ع",
+    "y": "غ",
+    "t": "ف",
+    "r": "ق",
+    ";": "ک",
+    "'": "گ",
+    "g": "ل",
+    "l": "م",
+    "k": "ن",
+    ",": "و",
+    "i": "ه",
+    "d": "ی",
+}
+
+
+def shift(code):
+    finale = []
+    for i in code:
+        if i in letter:
+            finale.append(letter[i])
+        else:
+            finale.append(i)
+    return "".join(finale)
+
+
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "!g or -g: Googles stuff for you i.e: !g Telegram Bot" \
@@ -45,7 +123,7 @@ def RPS(message):
         botMove = choice(["سنگ", "کاغذ", "قیچی"])
 
         matchRes = rps(m, botMove)
-        
+
         if matchRes == "tie":
             bot.send_message(message.chat.id, f"من {botMove} رو انتخاب کردم. مساوی شدیم")
         elif matchRes == "bot":
@@ -67,7 +145,7 @@ def RPS_multi(message):
 
         # Declaring Second Player
         player2 = message.text.split(":")[1]
-        
+
         # If input is a username
         if player2[0] == "@" and message.chat.type == "group":
             if "@" + message.from_user.username.lower() == player2.lower():
@@ -80,7 +158,7 @@ def RPS_multi(message):
                 players.append(player2.lower()[1:])
                 bot.send_message(message.chat.id, f"{player2} has been challenged!")
             # bot.send_message(message.chat.id, players[0] + ", " + players[1])
-        
+
         # If it's not a username, it must be a move
         else:
             if message.chat.type == "private" and message.from_user.username.lower() in players:
@@ -98,15 +176,15 @@ def RPS_multi(message):
                     if rps(player_moves[0], player_moves[1]) == "player1":
                         bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
                         bot.send_message(-218047352, f"\"{players[0]}\" is the winner")
-                    
+
                     elif rps(player_moves[0], player_moves[1]) == "player2":
                         bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
                         bot.send_message(-218047352, f"\"{players[1]}\" is the winner")
-                    
+
                     elif rps(player_moves[0], player_moves[1]) == "tie":
                         bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
                         bot.send_message(-218047352, f"Tie")
-                    
+
                     else:
                         bot.send_message(-218047352, "Error")
     except:
@@ -137,7 +215,7 @@ def bowl(message):
             response = choice(["یدونه مونده تا امتیاز کامل!", "اگه مهارت منو داشتی، الان امتیاز کامل گرفته بودی", "خیلی نزدیک شدی", "میل آخر داشت می افتاد، ولی یهو صاف شد", "عه امتیاز کامل رفت امتیاز کامل خودافیظ"])
         elif hit == 10:
             response = choice(["آقا تبریک میگم، ما بولینگ بازان حرفه ای، به شما افتخار می کنیم", "امتیاز کاملو گرفتی!", "تبریک میگم! امتیاز همه میل ها رو زدی"])
-        
+
         bot.send_message(message.chat.id, f"`شما {hit} میل انداختید`", parse_mode="markdown")
         bot.send_message(message.chat.id, response)
     except:
@@ -159,7 +237,7 @@ def youtube(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text.split(" ")[0] == "!say" or m.text.split(" ")[0] == "-say") else False)
+@bot.message_handler(commands=["say"])
 def say(message):
     try:
         m = message.text[4:]
@@ -168,7 +246,7 @@ def say(message):
             bot.send_message(message.chat.id, m)
         else:
             bot.reply_to(message.reply_to_message, m)
-        
+
     except:
         pass
 
@@ -178,55 +256,43 @@ def send_season_one(message):
         m = message.text.split(" ")
         if len(m) > 1:
             if m[1] == '1':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 2)
             elif m[1] == '2':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 3)
             elif m[1] == '3':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 4)
             elif m[1] == '4':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 5)
             elif m[1] == '5':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 6)
             elif m[1] == '6':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 7)
             elif m[1] == '7':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 8)
             elif m[1] == '8':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 9)
             elif m[1] == '9':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 10)
             elif m[1] == '10':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 11)
             elif m[1] == '11':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 12)
             elif m[1] == '12':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 13)
             elif m[1] == '13':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 14)
             elif m[1] == '14':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 15)
             elif m[1] == '15':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 16)
             elif m[1] == '16':
-                bot.send_message(message.chat.id, m[1])
                 bot.forward_message(message.chat.id, -1001410450666, 17)
+            elif m[1] == '17':
+                bot.forward_message(message.chat.id, -1001410450666, 18)
+            elif m[1] == '18':
+                bot.forward_message(message.chat.id, -1001410450666, 19)
             else:
-                print("Error")
+                pass
     except:
         pass
 
@@ -266,8 +332,27 @@ def ban(message):
     if (message.sticker.set_name == "khas0111") or (message.sticker.set_name == "Emamkhomeyni_rah"):
         bot.delete_message(message.chat.id, message.message_id)
 
+@bot.message_handler(func=lambda m: True if m.text != None and ("میو" in m.text or "meow" in m.text) else False)
+def dog(message):
+    bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEBgMpfl6IEZDexxna5WFA8oSWv1GevEgACgwEAAo_mhQcY3h1Fblj4tBsE")
+
+@bot.message_handler(commands=["translate"])
+def translate(message):
+    try:
+        bot.reply_to(message.reply_to_message, shift(message.reply_to_message.text.lower()))
+    except:
+        pass
+    
+
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "چی میگی تو" or m.text == "چی میگی تو؟" or m.text == "چی می گی تو" or m.text == "چی می گی تو؟") else False)
+def gorbe_1(message):
+    bot.reply_to(message, "چی میگی تو یعنی چی؟")
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "عن آقا" or m.text == "عن اقا") else False)
+def gorbe_2(message):
+    bot.reply_to(message, "درست صحبت کن\nعن آقا چیه؟")
+    bot.send_message(message.chat.id, "`کف گرگی`", parse_mode="markdown")
+
 try:
     bot.polling(none_stop=True)
 except:
     pass
-
