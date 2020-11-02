@@ -96,6 +96,7 @@ letter = {
     ",": "و",
     "i": "ه",
     "d": "ی",
+    "H": "آ",
 }
 
 
@@ -221,7 +222,7 @@ def bowl(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text.split(" ")[0] == "!g" or m.text.split(" ")[0] == "-g") else False)
+@bot.message_handler(commands=["g"])
 def google(message):
     try:
         search = message.text[3:].replace(" ", "+")
@@ -229,7 +230,7 @@ def google(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text.split(" ")[0] == "!y" or m.text.split(" ")[0] == "-y") else False)
+@bot.message_handler(commands=["y"])
 def youtube(message):
     try:
         search = message.text[3:].replace(" ", "+")
@@ -291,6 +292,10 @@ def send_season_one(message):
                 bot.forward_message(message.chat.id, -1001410450666, 18)
             elif m[1] == '18':
                 bot.forward_message(message.chat.id, -1001410450666, 19)
+            elif m[1] == '19':
+                bot.forward_message(message.chat.id, -1001410450666, 21)
+            elif m[1] == '20':
+                bot.forward_message(message.chat.id, -1001410450666, 23)
             else:
                 pass
     except:
@@ -327,14 +332,17 @@ def kill(message):
     except:
         pass
 
+banned_stickers = ["khas0111", "Emamkhomeyni_rah", "HamenabaGp"]
 @bot.message_handler(content_types=["sticker"])
 def ban(message):
-    if (message.sticker.set_name == "khas0111") or (message.sticker.set_name == "Emamkhomeyni_rah"):
+    if message.sticker.set_name in banned_stickers:
         bot.delete_message(message.chat.id, message.message_id)
+    elif message.sticker.set_name == "Shpooky":
+        bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEBgOZfl9FCGjYq5NOakbIb3t16JgZtngACswADj-aFB1be__PTiwZoGwQ")
 
-@bot.message_handler(func=lambda m: True if m.text != None and ("میو" in m.text or "meow" in m.text) else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ("میو" in m.text.split(" ") or "meow" in m.text.split(" ")) else False)
 def dog(message):
-    bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEBgMpfl6IEZDexxna5WFA8oSWv1GevEgACgwEAAo_mhQcY3h1Fblj4tBsE")
+    pass
 
 @bot.message_handler(commands=["translate"])
 def translate(message):
@@ -342,7 +350,10 @@ def translate(message):
         bot.reply_to(message.reply_to_message, shift(message.reply_to_message.text.lower()))
     except:
         pass
-    
+
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text.split(" ")[0] == "تدوخ" or m.text.split(" ")[0] == "تدی") else False)
+def teddy(message):
+    bot.send_message(message.chat.id, "🧸بله")
 
 @bot.message_handler(func=lambda m: True if m.text != None and (m.text == "چی میگی تو" or m.text == "چی میگی تو؟" or m.text == "چی می گی تو" or m.text == "چی می گی تو؟") else False)
 def gorbe_1(message):
@@ -351,6 +362,10 @@ def gorbe_1(message):
 def gorbe_2(message):
     bot.reply_to(message, "درست صحبت کن\nعن آقا چیه؟")
     bot.send_message(message.chat.id, "`کف گرگی`", parse_mode="markdown")
+
+@bot.message_handler(func=lambda m: True if m.text != None and m.chat.type == "private" else False)
+def yChanger(message):
+    bot.send_message(message.chat.id, message.text.replace("ی", "ي"))
 
 try:
     bot.polling(none_stop=True)
