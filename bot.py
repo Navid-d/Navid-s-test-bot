@@ -365,6 +365,10 @@ def gorbe_2(message):
     bot.reply_to(message, "درست صحبت کن\nعن آقا چیه؟")
     bot.send_message(message.chat.id, "`کف گرگی`", parse_mode="markdown")
 
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "یوبی سافت" or m.text == "یوبیسافت") else False)
+def ubibug(message):
+    bot.reply_to(message, "*یوبی باگ")
+                         
 @bot.message_handler(func=lambda m: True if m.text != None and m.chat.type == "private" else False)
 def yChanger(message):
     bot.send_message(message.chat.id, message.text.replace("ی", "ي"))
