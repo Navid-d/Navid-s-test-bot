@@ -369,9 +369,9 @@ def gorbe_2(message):
 def ubibug(message):
     bot.reply_to(message, "*یوبی باگ")
 
-@bot.message_handler(func=lambda m: True if m.text != None and ("ترامپ" in m.text and ("ترام" not in m.text or "تُرام" not in m.text)) else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ("ترامپ" in m.text) and ("ترام" not in m.text or "تُرام" not in m.text) else False)
 def toram(message):
-    bot.reply_to(message, "*ترام")
+    bot.reply_to(message, "*تُرام")
                          
 @bot.message_handler(func=lambda m: True if m.text != None and m.chat.type == "private" else False)
 def yChanger(message):
