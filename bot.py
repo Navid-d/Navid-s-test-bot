@@ -334,7 +334,7 @@ def zeyghami_pnb(message):
 @bot.message_handler(commands=["kill", "vote"])
 def kill(message):
     try:
-        bot.send_message(message.chat.id, f"{message.text.split( )[1]} {choice(['was', 'was not'])} an impostor")
+        bot.send_message(message.chat.id, f"{message.text.split(" ")[1:]} {choice(['was', 'was not'])} an impostor")
     except:
         pass
 
