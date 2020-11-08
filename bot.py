@@ -267,42 +267,28 @@ def send_season_one(message):
             elif m[1] == '4' or m[1] == '۴':
                 bot.forward_message(message.chat.id, -1001410450666, 5)
             elif m[1] == '5' or m[1] == '۵':
-                bot.forward_message(message.chat.id, -1001410450666, 6)
-            elif m[1] == '6' or m[1] == '۶':
-                bot.forward_message(message.chat.id, -1001410450666, 7)
-            elif m[1] == '7' or m[1] == '۷':
                 bot.forward_message(message.chat.id, -1001410450666, 8)
-            elif m[1] == '8' or m[1] == '۸':
-                bot.forward_message(message.chat.id, -1001410450666, 9)
-            elif m[1] == '9' or m[1] == '۹':
+            elif m[1] == '6' or m[1] == '۶':
                 bot.forward_message(message.chat.id, -1001410450666, 10)
-            elif m[1] == '10' or m[1] == '۱۰':
-                bot.forward_message(message.chat.id, -1001410450666, 11)
-            elif m[1] == '11' or m[1] == '۱۱':
+            elif m[1] == '7' or m[1] == '۷':
                 bot.forward_message(message.chat.id, -1001410450666, 12)
-            elif m[1] == '12' or m[1] == '۱۲':
-                bot.forward_message(message.chat.id, -1001410450666, 13)
-            elif m[1] == '13' or m[1] == '۱۳':
+            elif m[1] == '8' or m[1] == '۸':
                 bot.forward_message(message.chat.id, -1001410450666, 14)
-            elif m[1] == '14' or m[1] == '۱۴':
-                bot.forward_message(message.chat.id, -1001410450666, 15)
-            elif m[1] == '15' or m[1] == '۱۵':
+            elif m[1] == '9' or m[1] == '۹':
                 bot.forward_message(message.chat.id, -1001410450666, 16)
-            elif m[1] == '16' or m[1] == '۱۶':
+            elif m[1] == '10' or m[1] == '۱۰':
                 bot.forward_message(message.chat.id, -1001410450666, 17)
-            elif m[1] == '17' or m[1] == '۱۷':
+            elif m[1] == '11' or m[1] == '۱۱':
                 bot.forward_message(message.chat.id, -1001410450666, 18)
-            elif m[1] == '18' or m[1] == '۱۸':
+            elif m[1] == '12' or m[1] == '۱۲':
                 bot.forward_message(message.chat.id, -1001410450666, 19)
-            elif m[1] == '19' or m[1] == '۱۹':
-                bot.forward_message(message.chat.id, -1001410450666, 21)
-            elif m[1] == '20' or m[1] == '۲۰':
+            elif m[1] == '13' or m[1] == '۱۳':
                 bot.forward_message(message.chat.id, -1001410450666, 23)
-            elif m[1] == '21' or m[1] == '۲۱':
+            elif m[1] == '14' or m[1] == '۱۴':
                 bot.forward_message(message.chat.id, -1001410450666, 25)
-            elif m[1] == '22' or m[1] == '۲۲':
+            elif m[1] == '15' or m[1] == '۱۵':
                 bot.forward_message(message.chat.id, -1001410450666, 26)
-            elif m[1] == '23' or m[1] == '۲۳':
+            elif m[1] == '16' or m[1] == '۱۶':
                 bot.forward_message(message.chat.id, -1001410450666, 28)
             else:
                 pass
@@ -379,10 +365,16 @@ def ubibug(message):
 @bot.message_handler(func=lambda m: True if m.text != None and ("ترامپ" in m.text) and ("ترام" not in m.text or "تُرام" not in m.text) else False)
 def toram(message):
     bot.reply_to(message, "*تُرام")
-                         
-@bot.message_handler(func=lambda m: True if m.text != None and m.chat.type == "private" else False)
-def yChanger(message):
-    bot.send_message(message.chat.id, message.text.replace("ی", "ي"))
+
+
+@bot.message_handler(commands=['soosmazstats'])
+def soosmazStats(message):
+    for i in range(29):
+        bot.send_message(message.chat.id, i)
+        try:
+            bot.forward_message(message.chat.id, -1001410450666, i)
+        except:
+            pass
 
 try:
     bot.polling(none_stop=True)
