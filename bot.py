@@ -333,13 +333,10 @@ def ban(message):
     elif message.sticker.set_name == "Shpooky":
         bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEBgOZfl9FCGjYq5NOakbIb3t16JgZtngACswADj-aFB1be__PTiwZoGwQ")
 
-@bot.message_handler(func=lambda m: True if m.text != None and ("میو" in m.text.split(" ") or "meow" in m.text.split(" ")) else False)
-def dog(message):
-    pass
-
 @bot.message_handler(commands=["tr", "تر"])
 def translate(message):
     try:
+        bot.delete_message(message.chat.id, message.message_id)
         bot.reply_to(message.reply_to_message, shift(message.reply_to_message.text.lower()))
     except:
         pass
