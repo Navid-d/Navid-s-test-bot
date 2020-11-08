@@ -253,56 +253,56 @@ def say(message):
     except:
         pass
 
-@bot.message_handler(commands=['soosmaz', 'سوسماز'])
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text.split(" ")[0].lower() == "soosmaz" or m.text.split(" ")[0] == "سوسماز") else False)
 def send_season_one(message):
     try:
         m = message.text.split(" ")
         if len(m) > 1:
-            if m[1] == '1':
+            if m[1] == '1' or m[1] == '۱':
                 bot.forward_message(message.chat.id, -1001410450666, 2)
-            elif m[1] == '2':
+            elif m[1] == '2' or m[1] == '۲':
                 bot.forward_message(message.chat.id, -1001410450666, 3)
-            elif m[1] == '3':
+            elif m[1] == '3' or m[1] == '۳':
                 bot.forward_message(message.chat.id, -1001410450666, 4)
-            elif m[1] == '4':
+            elif m[1] == '4' or m[1] == '۴':
                 bot.forward_message(message.chat.id, -1001410450666, 5)
-            elif m[1] == '5':
+            elif m[1] == '5' or m[1] == '۵':
                 bot.forward_message(message.chat.id, -1001410450666, 6)
-            elif m[1] == '6':
+            elif m[1] == '6' or m[1] == '۶':
                 bot.forward_message(message.chat.id, -1001410450666, 7)
-            elif m[1] == '7':
+            elif m[1] == '7' or m[1] == '۷':
                 bot.forward_message(message.chat.id, -1001410450666, 8)
-            elif m[1] == '8':
+            elif m[1] == '8' or m[1] == '۸':
                 bot.forward_message(message.chat.id, -1001410450666, 9)
-            elif m[1] == '9':
+            elif m[1] == '9' or m[1] == '۹':
                 bot.forward_message(message.chat.id, -1001410450666, 10)
-            elif m[1] == '10':
+            elif m[1] == '10' or m[1] == '۱۰':
                 bot.forward_message(message.chat.id, -1001410450666, 11)
-            elif m[1] == '11':
+            elif m[1] == '11' or m[1] == '۱۱':
                 bot.forward_message(message.chat.id, -1001410450666, 12)
-            elif m[1] == '12':
+            elif m[1] == '12' or m[1] == '۱۲':
                 bot.forward_message(message.chat.id, -1001410450666, 13)
-            elif m[1] == '13':
+            elif m[1] == '13' or m[1] == '۱۳':
                 bot.forward_message(message.chat.id, -1001410450666, 14)
-            elif m[1] == '14':
+            elif m[1] == '14' or m[1] == '۱۴':
                 bot.forward_message(message.chat.id, -1001410450666, 15)
-            elif m[1] == '15':
+            elif m[1] == '15' or m[1] == '۱۵':
                 bot.forward_message(message.chat.id, -1001410450666, 16)
-            elif m[1] == '16':
+            elif m[1] == '16' or m[1] == '۱۶':
                 bot.forward_message(message.chat.id, -1001410450666, 17)
-            elif m[1] == '17':
+            elif m[1] == '17' or m[1] == '۱۷':
                 bot.forward_message(message.chat.id, -1001410450666, 18)
-            elif m[1] == '18':
+            elif m[1] == '18' or m[1] == '۱۸':
                 bot.forward_message(message.chat.id, -1001410450666, 19)
-            elif m[1] == '19':
+            elif m[1] == '19' or m[1] == '۱۹':
                 bot.forward_message(message.chat.id, -1001410450666, 21)
-            elif m[1] == '20':
+            elif m[1] == '20' or m[1] == '۲۰':
                 bot.forward_message(message.chat.id, -1001410450666, 23)
-            elif m[1] == '21':
+            elif m[1] == '21' or m[1] == '۲۱':
                 bot.forward_message(message.chat.id, -1001410450666, 25)
-            elif m[1] == '22':
+            elif m[1] == '22' or m[1] == '۲۲':
                 bot.forward_message(message.chat.id, -1001410450666, 26)
-            elif m[1] == '23':
+            elif m[1] == '23' or m[1] == '۲۳':
                 bot.forward_message(message.chat.id, -1001410450666, 28)
             else:
                 pass
