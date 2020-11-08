@@ -253,7 +253,7 @@ def say(message):
     except:
         pass
 
-@bot.message_handler(commands=['soosmaz'])
+@bot.message_handler(commands=['soosmaz', 'سوسماز'])
 def send_season_one(message):
     try:
         m = message.text.split(" ")
