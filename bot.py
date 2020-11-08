@@ -337,7 +337,7 @@ def ban(message):
 def dog(message):
     pass
 
-@bot.message_handler(commands=["translate"])
+@bot.message_handler(commands=["tr", "تر"])
 def translate(message):
     try:
         bot.reply_to(message.reply_to_message, shift(message.reply_to_message.text.lower()))
