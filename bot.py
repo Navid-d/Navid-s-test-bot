@@ -279,16 +279,14 @@ def send_season_one(message):
             elif m[1] == '10' or m[1] == '۱۰':
                 bot.forward_message(message.chat.id, -1001410450666, 17)
             elif m[1] == '11' or m[1] == '۱۱':
-                bot.forward_message(message.chat.id, -1001410450666, 18)
-            elif m[1] == '12' or m[1] == '۱۲':
                 bot.forward_message(message.chat.id, -1001410450666, 19)
-            elif m[1] == '13' or m[1] == '۱۳':
+            elif m[1] == '12' or m[1] == '۱۲':
                 bot.forward_message(message.chat.id, -1001410450666, 23)
-            elif m[1] == '14' or m[1] == '۱۴':
+            elif m[1] == '13' or m[1] == '۱۳':
                 bot.forward_message(message.chat.id, -1001410450666, 25)
-            elif m[1] == '15' or m[1] == '۱۵':
+            elif m[1] == '14' or m[1] == '۱۴':
                 bot.forward_message(message.chat.id, -1001410450666, 26)
-            elif m[1] == '16' or m[1] == '۱۶':
+            elif m[1] == '15' or m[1] == '۱۵':
                 bot.forward_message(message.chat.id, -1001410450666, 28)
             else:
                 pass
