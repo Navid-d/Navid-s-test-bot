@@ -302,6 +302,8 @@ def send_season_one(message):
                 bot.forward_message(message.chat.id, -1001410450666, 25)
             elif m[1] == '22':
                 bot.forward_message(message.chat.id, -1001410450666, 26)
+            elif m[1] == '23':
+                bot.forward_message(message.chat.id, -1001410450666, 28)
             else:
                 pass
     except:
