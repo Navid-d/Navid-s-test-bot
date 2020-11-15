@@ -324,11 +324,9 @@ def kill(message):
     except:
         pass
 
-banned_stickers = ["khas0111", "Emamkhomeyni_rah", "HamenabaGp"]
-@bot.message_handler(lambda m: True)
-def ban(message):
-    if ("پی وی" in message.text or "پیوی" in message.text) and "بیا" in message.text:
-        bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
+@bot.message_handler(True if ("پی وی" in message.text or "پیوی" in message.text) and "بیا" in message.text else False)
+def pv(message):
+    bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
 
 @bot.message_handler(commands=["tr", "تر"])
 def translate(message):
