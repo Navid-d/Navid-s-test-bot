@@ -324,9 +324,8 @@ def kill(message):
     except:
         pass
 
-@bot.message_handler(True if m.text != None and ("پی وی" in message.text or "پیوی" in message.text) and "بیا" in message.text else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ("پی وی" in message.text or "پیوی" in message.text) and "بیا" in message.text else False)
 def pv(message):
-    bot.send_message(message.chat.id, "test")
     bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
 
 @bot.message_handler(commands=["tr", "تر"])
