@@ -327,9 +327,8 @@ def kill(message):
 banned_stickers = ["khas0111", "Emamkhomeyni_rah", "HamenabaGp"]
 @bot.message_handler(content_types=["sticker"])
 def ban(message):
-    if message.sticker.set_name in banned_stickers:
-        # bot.delete_message(message.chat.id, message.message_id)
-        pass
+    if ("پی وی" in message.text or "پیوی" in message.text) and "بیا" in message.text:
+        bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
     elif message.sticker.set_name == "Shpooky":
         bot.send_sticker(message.chat.id, "CAACAgEAAxkBAAEBgOZfl9FCGjYq5NOakbIb3t16JgZtngACswADj-aFB1be__PTiwZoGwQ")
 
