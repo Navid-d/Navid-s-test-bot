@@ -324,7 +324,7 @@ def kill(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text.lower() == "pv" or m.text.lower() == "p v" or m.text == "پیوی" or m.text == "پی وی") or ("پی وی" in m.text or "pv" in m.text or "p v" in m.text or "پیوی" in m.text) and "بیا" in m.text else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ((m.text.lower() == "pv" or m.text.lower() == "p v" or m.text == "پیوی" or m.text == "پی وی") or ("پی وی" in m.text or "pv" in m.text or "p v" in m.text or "پیوی" in m.text) and "بیا" in m.text) else False)
 def pv(message):
     bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
 
