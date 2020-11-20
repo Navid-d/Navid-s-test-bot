@@ -289,7 +289,7 @@ def send_season_one(message):
             elif m[1] == '15' or m[1] == '۱۵':
                 bot.forward_message(message.chat.id, -1001410450666, 28)
             elif m[1] == '16' or m[1] == '۱۶':
-                bot.forward_message(message.chat.id, -1001410450666, 29)
+                bot.forward_message(message.chat.id, -1001410450666, 31)
             else:
                 pass
     except:
