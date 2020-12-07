@@ -2,33 +2,6 @@ import telebot
 from telebot import types
 from random import choice
 
-def rps(player1, player2):
-    if player1 == "rock 🗻":
-        if player2 == "rock 🗻":
-            return "tie"
-        elif player2 == "paper 📄":
-            return "player2"
-        elif player2 == "scissor ✂️":
-            return "player1"
-
-    elif player1 == "paper 📄":
-        if player2 == "rock 🗻":
-            return "player1"
-        elif player2 == "paper 📄":
-            return "tie"
-        elif player2 == "scissor ✂️":
-            return "player2"
-
-    elif player1 == "scissor ✂️":
-        if player2 == "rock 🗻":
-            return "player2"
-        elif player2 == "paper 📄":
-            return "player1"
-        elif player2 == "scissor ✂️":
-            return "tie"
-    else:
-        return "error"
-
 bot = telebot.TeleBot("1245162998:AAHYtCvVRrszidXcERn-4o8tySA55CSUm_I", parse_mode=None)
 
 letter = {
@@ -114,84 +87,8 @@ def shift(code):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, "!g or -g: Googles stuff for you i.e: !g Telegram Bot" \
-                "\n!y or -y: Searches Youtube for you i.e: !y My name is Jeff" \
-                "\n!say or -say: Says something i.e: !say Hello there!" \
-                "\n/soosmaz: Sends Soosmaz for you i.e: /soosmaz 2")
+    bot.reply_to(message, "Hello there! How can I help you?")
 
-@bot.message_handler(func=lambda m: True if m.text != None and m.text.split(":")[0] == "!سنگ کاغذ قیچی" else False)
-def RPS(message):
-    try:
-        m = message.text.split(":")[1]
-        botMove = choice(["سنگ", "کاغذ", "قیچی"])
-
-        matchRes = rps(m, botMove)
-
-        if matchRes == "tie":
-            bot.send_message(message.chat.id, f"من {botMove} رو انتخاب کردم. مساوی شدیم")
-        elif matchRes == "bot":
-            bot.send_message(message.chat.id, f"من {botMove} رو انتخاب کردم. من بردم!")
-        elif matchRes == "mem":
-            bot.send_message(message.chat.id, f"من {botMove} رو انتخاب کردم. تو بردی!")
-        else:
-            bot.send_message(message.chat.id, "از بین سنگ و کاغذ و قیچی یکی رو انتخاب کن")
-    except:
-        pass
-
-players = []
-player_moves = [None, None]
-@bot.message_handler(func=lambda m: True if m.text != None and m.text.split(":")[0].lower() == "!rps" else False)
-def RPS_multi(message):
-    try:
-        global players
-        global player_moves
-
-        # Declaring Second Player
-        player2 = message.text.split(":")[1]
-
-        # If input is a username
-        if player2[0] == "@" and message.chat.type == "group":
-            if "@" + message.from_user.username.lower() == player2.lower():
-                bot.send_message(message.chat.id, "Error: Two players are the same")
-                return 0
-            else:
-                players = []
-                player_moves = [None, None]
-                players.append(message.from_user.username.lower())
-                players.append(player2.lower()[1:])
-                bot.send_message(message.chat.id, f"{player2} has been challenged!")
-            # bot.send_message(message.chat.id, players[0] + ", " + players[1])
-
-        # If it's not a username, it must be a move
-        else:
-            if message.chat.type == "private" and message.from_user.username.lower() in players:
-                move = message.text.split(":")[1].lower()
-                if move == "r":
-                    player_moves[players.index(message.from_user.username.lower())] = "rock 🗻"
-                elif move == "p":
-                    player_moves[players.index(message.from_user.username.lower())] = "paper 📄"
-                elif move == "s":
-                    player_moves[players.index(message.from_user.username.lower())] = "scissor ✂️"
-                else:
-                    bot.send_message(message.chat.id, "Error: Not a valid move")
-
-                if player_moves[0] != None and player_moves[1] != None:
-                    if rps(player_moves[0], player_moves[1]) == "player1":
-                        bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
-                        bot.send_message(-218047352, f"\"{players[0]}\" is the winner")
-
-                    elif rps(player_moves[0], player_moves[1]) == "player2":
-                        bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
-                        bot.send_message(-218047352, f"\"{players[1]}\" is the winner")
-
-                    elif rps(player_moves[0], player_moves[1]) == "tie":
-                        bot.send_message(-218047352, f"{players[0]}  :  {player_moves[0]}\n\n{players[1]}  :  {player_moves[1]}")
-                        bot.send_message(-218047352, f"Tie")
-
-                    else:
-                        bot.send_message(-218047352, "Error")
-    except:
-        pass
 
 @bot.message_handler(func=lambda m: True if m.text != None and m.text == "!bowl" or m.text == "-bowl" else False)
 def bowl(message):
@@ -229,14 +126,6 @@ def google(message):
     try:
         search = message.text[3:].replace(" ", "+")
         bot.reply_to(message, f"http://www.google.com/search?q={search}")
-    except:
-        pass
-
-@bot.message_handler(commands=["y"])
-def youtube(message):
-    try:
-        search = message.text[3:].replace(" ", "+")
-        bot.reply_to(message, f"https://www.youtube.com/results?search_query={search}")
     except:
         pass
 
@@ -297,7 +186,7 @@ def send_season_one(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and "ب3" in m.text else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ("ب3" in m.text) or ("ب۳" in m.text) else False)
 def BalBalBal(message):
     bot.delete_message(message.chat.id, message.message_id)
     if message.reply_to_message == None:
@@ -305,7 +194,7 @@ def BalBalBal(message):
     else:
         bot.reply_to(message.reply_to_message, "بل بل بل")
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "ضیغمی 1" or m.text == "ضیغمی1") else False)
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "ضیغمی 1" or m.text == "ضیغمی1") or (m.text == "ضیغمی ۱" or m.text == "ضیغمی۱") else False)
 def zeyghami_khosgel(message):
     bot.delete_message(message.chat.id, message.message_id)
     if message.reply_to_message == None:
@@ -313,7 +202,7 @@ def zeyghami_khosgel(message):
     else:
         bot.reply_to(message.reply_to_message, "خوشگل!")
 
-@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "ضیغمی 2" or m.text == "ضیغمی2") else False)
+@bot.message_handler(func=lambda m: True if m.text != None and (m.text == "ضیغمی 2" or m.text == "ضیغمی2") or (m.text == "ضیغمی ۲" or m.text == "ضیغمی۲") else False)
 def zeyghami_pnb(message):
     bot.delete_message(message.chat.id, message.message_id)
     if message.reply_to_message == None:
@@ -328,9 +217,13 @@ def kill(message):
     except:
         pass
 
-@bot.message_handler(func=lambda m: True if m.text != None and ((m.text.lower() == "pv" or m.text.lower() == "p v" or m.text == "پیوی" or m.text == "پی وی") or ("پی وی" in m.text or "pv" in m.text or "p v" in m.text or "پیوی" in m.text) and "بیا" in m.text) else False)
+@bot.message_handler(func=lambda m: True if m.text != None and ((m.text.lower() == "pv" or m.text.lower() == "p v" or m.text == "پیوی" or m.text == "پی وی") or ("pivi" in m.text or "پی وی" in m.text or "pv" in m.text or "p v" in m.text or "پیوی" in m.text) and "بیا" in m.text) else False)
 def pv(message):
     bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBlWxfsVDm--sFkE-jHe1oaDt1tg83PAACJgADbpFoJd_MIsVeW-fTHgQ")
+
+@bot.message_handler(func=lambda m: True if m.text != None and m.text == "چشم چشم" else False)
+def chasm(message):
+    bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEBoYJfwewhlmDQhJbPHojWmi7GZBs5dAACKAADbpFoJebkFFQqAhrxHgQ")
 
 @bot.message_handler(commands=["tr", "تر"])
 def translate(message):
@@ -356,10 +249,9 @@ def gorbe_2(message):
 def ubibug(message):
     bot.reply_to(message, "*یوبی باگ")
 
-@bot.message_handler(func=lambda m: True if m.text != None and ("ترامپ" in m.text) and ("ترام" not in m.text or "تُرام" not in m.text) else False)
-def toram(message):
-    bot.reply_to(message, "*تُرام")
-
+@bot.message_handler(func=lambda m: True if m.text != None and ("صلوات" in m.text) else False)
+def salavat(message):
+    bot.reply_to(message, "ٱللَّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَآلِ مُحَمَّدٍ")
 
 @bot.message_handler(commands=['soosmazstats'])
 def soosmazStats(message):
